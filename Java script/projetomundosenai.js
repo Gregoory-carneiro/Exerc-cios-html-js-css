@@ -1,23 +1,24 @@
  const divbotaoiniciar= document.getElementById("iniciarjogo")
  const divcaixaQuiz = document.getElementById("caixaQuiz")
- let indicePerguntas= 0
  const h2perguntadoquiz= document.getElementById("perguntadoquiz")
  const botaoiniciarjogo= document.getElementById("botaojogar")
  const botaoproximapergunta = document.getElementById("btnproximo")
  const divplacar = document.getElementById("placar")
+const btnreiniciarjogo= document.getElementById ("reiniciar")
 
+ let indicePerguntas= 0
  let respostasCorretas = 0 
- let respostasErradas = 0
+
 
  botaoiniciarjogo.addEventListener("mouseover",  btniniciarjogo, )
  botaoproximapergunta.addEventListener("click", proximapergunta,)
+ btnreiniciarjogo.addEventListener ("click", () => location.reload())
   //Array
  const perguntas=[
     {perguntas: "Qual é o maior deserto do mundo?", opcoes:["Saara", "Atacama", "Antartica"], respostacorreta:"Antartica"},
     {perguntas:"Qual é a capital do Brasil?", opcoes:["Belem", "Sp", "Brasilia"], respostacorreta:"Brasilia"},
     {perguntas:"Qual é a capital da Austrália?",  opcoes:["Camberra", "Atacama", "Sidney"], respostacorreta:"Camberra"},
     {perguntas:"Qual é o país com maior população no mundo?", opcoes:["India", "China", "Russia"], respostacorreta:"India"},
-    {perguntas:" Qual a linha imaginária que atravessa o Brasil?", opcoes:["Capricornio", "Equador", "blablabla"], respostacorreta: "Equador"},
     {perguntas:"Qual o oceano que banha o Brasil?", opcoes:["Oceano Atlântico", "Oceano Pacifico", "Oceano Artico"], respostacorreta: "Oceano Atlântico"},
 ]
 function btniniciarjogo() {
@@ -32,7 +33,7 @@ function btniniciarjogo() {
    
   function abrirtelajogo(){
     divcaixaQuiz.classList.add("active");
-
+    botaoproximapergunta.disabled = true 
     h2perguntadoquiz.textContent=perguntas [indicePerguntas].perguntas
 
     opcoesRespostas.innerHTML=''
@@ -78,7 +79,11 @@ function btniniciarjogo() {
        if(opcaoselecionada == perguntas[indicePerguntas].respostacorreta){
          respostasCorretas++
        }
+           botaoproximapergunta.disabled = false
+
     }
+
+      
 
    function proximapergunta (){
     // incrementando a posição do array de perguntas
@@ -91,9 +96,9 @@ function btniniciarjogo() {
      divcaixaQuiz.classList.remove("active")
      divplacar.classList.add ("active")
      let resultadofinal = ("Acertos: " + respostasCorretas)
-      document.getElementById("acertos").innerHTML = resultadofinal
+    
+     document.getElementById("acertos").innerHTML = resultadofinal
+     
    }
 
   }
-
-
